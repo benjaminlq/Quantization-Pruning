@@ -10,5 +10,4 @@
 6. https://intel.github.io/neural-compressor/latest/docs/source/Welcome.html
 7. https://neuralmagic.com/sparseml/
 8. https://www.nebuly.com/modules/speedster
-9. https://www.nebuly.com/modules/speedster
-10. https://onnxruntime.ai/
+9. https://onnxruntime.ai/

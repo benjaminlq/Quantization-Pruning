@@ -41,6 +41,7 @@ class PretrainedResNet50(nn.Module):
             self.model = resnet50()
 
         self.model.fc = nn.Idenity()
+        self.activation = nn.LeakyRelu(negative_slope=0.1)
 
         self.fc1 = nn.Linear(self.featveclen, 512)
         self.fc2 = nn.Linear(512, 256)

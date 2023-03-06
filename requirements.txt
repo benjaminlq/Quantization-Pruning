@@ -4,3 +4,4 @@ torchvision==0.14.1
 onnx
 onnxruntime
 onnx-simplifier==0.4.10
+ipykernel

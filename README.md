@@ -11,3 +11,6 @@
 7. https://neuralmagic.com/sparseml/
 8. https://www.nebuly.com/modules/speedster
 9. https://onnxruntime.ai/
+
+## Inspecting Model Graphs
+- https://netron.app/

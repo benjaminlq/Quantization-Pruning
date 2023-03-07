@@ -1,10 +1,3 @@
-# def check_converted_model(
-#     torch_model: str,
-#     onnx_model: str,
-#     tolerance: float
-# ):
-#     assert
-
 import torch
 import torchvision
 from typing import Tuple, List, Optional
@@ -44,13 +37,13 @@ def pytorch_to_onnx(
             raise Exception("Model Path does not exist")
         # torch_model.load_state_dict(torch.load(torch_ckpt))
         torch_model.load_state_dict(torch.load(torch_ckpt))
-        print(f"Finished loading model")
+        LOGGER.info(f"Finished loading model {str(torch_model)}")
     dummy_input = torch.randn(1, *input_size, requires_grad=True)
     torch_model.eval()
     sample_output = torch_model(dummy_input)
     dynamic_batch = {"inputs": {0: "batch_size"},
                      "outputs": {0: "batch_size"}} if dynamic_batch else None
-    print("Start Converting Pytorch Model to Onnx")
+    LOGGER.info("Start Converting Pytorch Model to Onnx")
     torch.onnx.export(
         torch_model,
         dummy_input,
@@ -62,11 +55,11 @@ def pytorch_to_onnx(
         dynamic_axes=dynamic_batch,
         do_constant_folding=constant_folding
     )
-    print("Model Conversion Completed")
+    LOGGER.info("Model Conversion Completed")
     torch_model_stats = os.stat(torch_ckpt)
     onnx_model_stats = os.stat(onnx_ckpt)
-    print(f"Torch Model size = {torch_model_stats.st_size}")
-    print(f"Onnx Model size = {onnx_model_stats.st_size}")
+    LOGGER.info(f"Torch Model size = {torch_model_stats.st_size}")
+    LOGGER.info(f"Onnx Model size = {onnx_model_stats.st_size}")
     ort_session = ort.InferenceSession(onnx_ckpt)
     dummy_input = to_numpy(dummy_input)
     outputs = ort_session.run(
@@ -74,7 +67,7 @@ def pytorch_to_onnx(
         {"inputs": dummy_input},
     )
     np.testing.assert_allclose(to_numpy(sample_output), outputs[0], rtol=1e-03, atol=1e-05)
-    print("Output of converted model matched")
+    LOGGER.info("Output of converted model matched")
 
 def main():
     args = get_argument_parser()

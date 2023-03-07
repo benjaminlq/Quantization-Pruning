@@ -59,3 +59,10 @@ class CIFAR10DataLoader:
             num_workers = config.NUM_WORKERS,
             pin_memory=True
         )
+        
+if __name__ == "__main__":
+    dataloader = CIFAR10DataLoader(batch_size=2)
+    valloader = dataloader.val_dataloader()
+    sample_imgs, sample_labels = next(iter(valloader))
+    sample_imgs = sample_imgs.detach().cpu().numpy()
+    print(sample_imgs)

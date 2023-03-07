@@ -13,10 +13,8 @@ class PretrainedResNet50(nn.Module):
     def __init__(
         self,
         num_classes: int = 10,
-        lr: float = 1e-4,
         dropout_rate: float = 0.3,
-        pretrained_weights=True,
-        freeze: Union[bool, int] = False,
+        pretrained_weights: bool = True,
     ):
         """Pretrained ResNet50
 
@@ -34,31 +32,35 @@ class PretrainedResNet50(nn.Module):
             weights for any layers. If given int value, freeze weights of the
             first (bottom) number of layers. Defaults to False.
         """
-        super(PretrainedResNet50, self).__init__(num_classes, lr, dropout_rate)
+        super(PretrainedResNet50, self).__init__()
         if pretrained_weights:
             self.model = resnet50(weights=ResNet50_Weights.DEFAULT)
         else:
             self.model = resnet50()
 
-        self.model.fc = nn.Idenity()
-        self.activation = nn.LeakyRelu(negative_slope=0.1)
+        _, last_layer = list(self.model.named_modules())[-1]
+        self.featveclen = last_layer.weight.shape[1]
+
+        self.model.fc = nn.Identity()
+        self.activation = nn.LeakyReLU(negative_slope=0.1)
 
         self.fc1 = nn.Linear(self.featveclen, 512)
         self.fc2 = nn.Linear(512, 256)
-        self.fc3 = nn.Linear(256, self.num_classes)
+        self.fc3 = nn.Linear(256, num_classes)
+        self.dropout = nn.Dropout(dropout_rate)
 
-    def forward(self, inputs):
+    def forward(self, inputs: torch.tensor) -> torch.tensor:
         """Forward Propagation step
 
         Args:
-            inputs: torch.Tensor. Dimension = (batch_size, n_channels, 28, 28)
+            inputs (torch.tensor): Dimension = (batch_size, 3, 28, 28)
 
         Returns:
-            torch.Tensor. Dimension = (batch_size, num_classes)
+            torch.tensor: Probability of each class. Dimension = (batch_size, num_classes)
         """
         x = self.model(inputs)
-        x = F.selu(self.dropout(self.fc1(x)))
-        x = F.selu(self.dropout(self.fc2(x)))
+        x = self.activation(self.dropout(self.fc1(x)))
+        x = self.activation(self.dropout(self.fc2(x)))
         out = self.fc3(x)
         return out
 

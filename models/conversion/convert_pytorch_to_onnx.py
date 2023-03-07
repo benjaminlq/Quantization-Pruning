@@ -51,9 +51,6 @@ def pytorch_to_onnx(
     print(f"Torch Model size = {torch_model_stats.st_size}")
     print(f"Onnx Model size = {onnx_model_stats.st_size}")
 
-def main():
-        
-
 if __name__ == "__main__":
     args = get_argument_parser()
     

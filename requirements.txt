@@ -1,7 +1,10 @@
-numpy==1.24.2
+--find-links https://download.pytorch.org/whl/cpu
 torch==1.13.1
 torchvision==0.14.1
-onnx
-onnxruntime
+numpy==1.24.2
+onnx==1.13.1
+onnxruntime==1.14.1 # CPU version
+#onnxruntime-gpu # GPU version
 onnx-simplifier==0.4.10
-ipykernel
+ipykernel==6.21.3
+pytest==7.2.2

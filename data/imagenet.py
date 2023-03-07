@@ -1,6 +1,6 @@
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
-import config
+import config.config as config
 import os.path as osp
 
 class ImageNetEvalLoader:
@@ -8,11 +8,14 @@ class ImageNetEvalLoader:
         self,
     ):
         self.transform = transforms.Compose(
-            transforms.ToTensor(),
-            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+            [
+                transforms.ToTensor(),
+                transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+            ]
         )
         self.dataset = datasets.ImageNet(root = osp.join(config.DATA_PATH, "raw"),
-                                         split = "val", transforms=self.transform)
+                                         split = "val", transforms=self.transform,
+                                         download= True)
         
     def get_dataloader(
         self,

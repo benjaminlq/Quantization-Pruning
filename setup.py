@@ -1,6 +1,7 @@
 from setuptools import setup
 
-setup()
+if __name__ == "__main__":
+    setup()
 
 # def get_install_requirements():
 #     with open("requirements.txt", "r", encoding="utf-8") as f:

@@ -63,6 +63,9 @@ class PretrainedResNet50(nn.Module):
         x = self.activation(self.dropout(self.fc2(x)))
         out = self.fc3(x)
         return out
+    
+    def __str__(self):
+        return "ResNet50"
 
 if __name__ == "__main__":
     resnet = PretrainedResNet50()

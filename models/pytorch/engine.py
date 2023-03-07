@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torchvision
-import config
+from config import LOGGER
 import utils
       
 def train(model, dataloader, optimizer, criterion, args):
@@ -30,11 +30,12 @@ def train(model, dataloader, optimizer, criterion, args):
         
         test_acc = evaluate(model, valloader, device)
         
-        print(f"Epoch {epoch+1}: Loss = {epoch_loss/i: .3f}, Test Accuracy = {test_acc:.3f}")
+        LOGGER.info(f"Epoch {epoch+1}: Loss = {epoch_loss/i: .3f}, Test Accuracy = {test_acc:.3f}")
     
         if test_acc > max_acc:
             utils.save_model(model, args.ckpt_path)
-            print('Model Saved at: {} with test accuracy {}'.format(args.ckpt_path, max_acc))
+            max_acc = test_acc
+            LOGGER.info('Model Saved at: {} with test accuracy {}'.format(args.ckpt_path, max_acc))
 
 def evaluate(model, testloader, device):
     model.eval()

@@ -34,7 +34,7 @@ def main():
     model = PretrainedResNet50()
     LOGGER.info(f"Training {str(model)} Model using {device}")
     if args.torch_ckpt:
-        model.load_state_dict(torch.load(args.torch_ckpt), map_location = device)
+        model.load_state_dict(torch.load(args.torch_ckpt, map_location = device))
         LOGGER.info(f"Model {str(model)} checkpoint loaded succesfully from {args.torch_ckpt}")
         
     model.to(device)
@@ -44,7 +44,7 @@ def main():
     optimizer = torch.optim.Adam(params = model.parameters(),
                                  lr = args.learning_rate)
     
-    print(f"Start training Model for {args.epochs} epochs")
+    LOGGER.info(f"Start training Model for {args.epochs} epochs")
     start_time = time()
     train(model, dataloader, optimizer, criterion, args)
     LOGGER.info(f"Finished training after {time() - start_time}")
@@ -52,4 +52,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-#python3 models/pytorch/train.py -bs 75
+# python3 models/pytorch/train.py -bs 75

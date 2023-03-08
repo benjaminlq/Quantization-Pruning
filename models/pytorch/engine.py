@@ -59,7 +59,7 @@ def evaluate(model, testloader, criterion, device):
             outputs = model(images)
             loss = criterion(outputs, labels)
             epoch_loss += loss
-            _, predicted = torch.max(outputs.data, 1)
+            _, predicted = torch.max(outputs.detach(), 1)
             total_no += labels.size(0)
             correct_no += (predicted == labels).sum().item()
             

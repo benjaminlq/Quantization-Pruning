@@ -24,9 +24,9 @@ def onnx_eval(ort_session, val_loader, repeats = 1):
             ort_outputs = ort_session.run(None, ort_inputs)
         preds = np.argmax(ort_outputs[0], axis = 1)
         total_no += preds.shape[0]
-        correct_no = (preds == labels).sum()
+        correct_no += (preds == labels).sum()
     
-    accuracy = correct_no / total_no * 100
+    accuracy = correct_no * 100 / total_no
     return accuracy
 
 def main():
@@ -45,10 +45,10 @@ def main():
     start_time = time()
     accuracy = onnx_eval(ort_session, val_loader, repeats = args.repeats)
     time_elapsed = time() - start_time
-    LOGGER.info(f"Model Accuracy: {accuracy}")
+    LOGGER.info(f"ONNX Model Accuracy: {accuracy}")
     LOGGER.info(f"Total Inference time: {time_elapsed}")
     
 if __name__ == "__main__":
     main()
     
-# python3 models/onnx/cifar_inference.py -n "ResNet50 CIFAR10 ONNX Model" -c models/onnx/ckpt/best_resnet50_cifar10.onnx -r 5
+# python3 models/onnx/cifar_inference.py -n "ResNet50 CIFAR10 ONNX Model" -c models/onnx/ckpt/best_resnet50_cifar10.onnx -r 1

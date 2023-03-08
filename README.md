@@ -7,6 +7,7 @@
 - https://www.tensorflow.org/lite/performance/post_training_quantization
 - https://www.tensorflow.org/model_optimization/guide
 - https://www.tensorflow.org/model_optimization/guide/pruning
+- https://www.tensorflow.org/model_optimization/guide/clustering
 
 ### TFLite
 - To be updated

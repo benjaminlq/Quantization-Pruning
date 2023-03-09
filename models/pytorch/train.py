@@ -52,4 +52,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# python3 models/pytorch/train.py -bs 75
+# python3 models/pytorch/train.py -bs 16 -e 10 -lr 6e-5 -d cuda -c models/pytorch/ckpt/best_resnet50_cifar10.pth

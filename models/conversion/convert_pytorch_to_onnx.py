@@ -1,10 +1,10 @@
-import torch
-import torchvision
 from typing import Tuple, List, Optional
 import os
 import argparse
 from config import LOGGER
 from time import time
+#import onnxruntime as ort
+import torch
 import onnxruntime as ort
 from utils import to_numpy
 import numpy as np
@@ -60,7 +60,13 @@ def pytorch_to_onnx(
     onnx_model_stats = os.stat(onnx_ckpt)
     LOGGER.info(f"Torch Model size = {torch_model_stats.st_size}")
     LOGGER.info(f"Onnx Model size = {onnx_model_stats.st_size}")
-    ort_session = ort.InferenceSession(onnx_ckpt)
+    if ort.get_device() == "GPU":
+        print(f"Test model in {ort.get_device()}")
+        ort_session = ort.InferenceSession(onnx_ckpt,
+                                           providers=['CUDAExecutionProvider'])
+    else:
+        print(f"Test model in {ort.get_device()}")
+        ort_session = ort.InferenceSession(onnx_ckpt)
     dummy_input = to_numpy(dummy_input)
     outputs = ort_session.run(
         None,

@@ -4,6 +4,7 @@ from quantize.onnx.dataset_calibrate import CIFAR10DataReader
 from utils import benchmark_inference_time
 from config import LOGGER
 from time import time
+import os
 
 def get_argument_parser():
     parser = argparse.ArgumentParser("ONNX Quantization")
@@ -62,8 +63,14 @@ def main():
     else:
         LOGGER.error("Incorrect type of quantization")
         raise TypeError("Invalid quantization config type, it must be either StaticQuantConfig or DynamicQuantConfig.")
+    
+    fp32_model_stats = os.stat(args.onnx_ckpt)
+    int8_model_stats = os.stat(args.export_path)
+    LOGGER.info(f"FP32 Model size = {fp32_model_stats.st_size}")
+    LOGGER.info(f"INT8 Model size = {int8_model_stats.st_size}")
             
 if __name__ =="__main__":
     main()
     
 # python3 quantize/onnx/onnx_quantize.py -c models/onnx/ckpt/best_resnet50_cifar10.preproc.onnx -e models/onnx/ckpt/best_resnet50_cifar10.staticquant.onnx -t static
+

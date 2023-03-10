@@ -29,14 +29,15 @@ def pytorch_to_onnx(
     output_names: List = ["outputs"],
     constant_folding: bool = True,
     dynamic_batch: bool = True,
-    op_version: int = 11,
+    op_version: int = 12,
 ):
     
     if torch_ckpt:
         if not os.path.exists(torch_ckpt):
             raise Exception("Model Path does not exist")
         # torch_model.load_state_dict(torch.load(torch_ckpt))
-        torch_model.load_state_dict(torch.load(torch_ckpt))
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        torch_model.load_state_dict(torch.load(torch_ckpt, map_location=device))
         LOGGER.info(f"Finished loading model {str(torch_model)}")
     dummy_input = torch.randn(1, *input_size, requires_grad=True)
     torch_model.eval()

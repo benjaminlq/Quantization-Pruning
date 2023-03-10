@@ -16,7 +16,7 @@ def get_argument_parser():
     parser.add_argument("--export_path", "-x", type = str, help = "Export Path to store Onnx Model")
     parser.add_argument("--no_dynamic_batch", action = "store_false", help = "Whether Onnx Model takes dynamic batch size")
     parser.add_argument("--no_const_folding", action = "store_false", help = "Whether Apply Constant Folding")
-    parser.add_argument("--op_version", type = int, default = 11, help = "Version of ONNX opset")
+    parser.add_argument("--op_version", type = int, default = 12, help = "Version of ONNX opset")
     args = parser.parse_args()
     return args
     

@@ -10,7 +10,10 @@ class CIFAR10DataReader(CalibrationDataReader):
         batch_no: int = 10,
     ):
         self.enum_data = None
-        session = ort.InferenceSession(model_path, None)
+        if ort.get_device() == "GPU":
+            session = ort.InferenceSession(model_path, providers=["CUDAExecutionProvider"])
+        else:
+            session = ort.InferenceSession(model_path, providers=["CPUExecutionProvider"])
         (_, _, height, width) = session.get_inputs()[0].shape
         datamanager = CIFAR10DataLoader(batch_size=batch_size,
                                         input_size = (3, height, width))

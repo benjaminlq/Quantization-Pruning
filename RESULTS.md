@@ -6,19 +6,19 @@
 |   **Quantization**   |     **Pytorch**    |     **ONNX**     |   **Tensorflow**  |
 |    :-------------:   |  :--------------:  | :--------------: | :---------------: |
 |  Original (Float32)  |      **96.07 %**    |    **96.07 %**    |      **xx.xx%**      |
-|       Float16        |     **xx.xx%**     |    **xx.xx%**    |      **xx.xx%**      |
-|         Int8         |     **xx.xx%**     |    **xx.xx%**    |      **xx.xx%**      |
-|     Dynamic Range    |     **xx.xx%**     |    **xx.xx%**    |      **xx.xx%**      |
+|       Float16        |     **xx.xx%**     |    **Not Supported**    |      **xx.xx%**      |
+|         Int8         |     **xx.xx%**     |    **94.30% / 94.88%**    |      **xx.xx%**      |
+|     Dynamic Range    |     **xx.xx%**     |    **90.75%**    |      **xx.xx%**      |
 
-<br>
+<br> 644.98
 
 ## Size (MB)
 |   **Quantization**   |     **Pytorch**    |     **ONNX**     |   **Tensorflow**  |
 |    :-------------:   |  :--------------:  | :--------------: | :---------------: |
 |  Original (Float32)  |      **94.4 MB**      |      **94.1 MB**     |      **xx.xx MB**      |
-|       Float16        |     **xx.xx**     |    **xx.xx**    |      **xx.xx**      |
-|         Int8         |     **xx.xx**     |    **xx.xx**    |      **xx.xx**      |
-|     Dynamic Range    |     **xx.xx**     |    **xx.xx**    |      **xx.xx**      |
+|       Float16        |     **xx.xx**     |    **Not Supported**    |      **xx.xx**      |
+|         Int8         |     **xx.xx**     |    **23.70**    |      **xx.xx**      |
+|     Dynamic Range    |     **xx.xx**     |    **23.70**    |      **xx.xx**      |
 
 <br>
 
@@ -29,14 +29,14 @@
 |   **Quantization**   |     **Pytorch**    |     **ONNX**     |   **Tensorflow**  |
 |    :-------------:   |  :--------------:  | :--------------: | :---------------: |
 |  Original (Float32)  |      **702.12 s**    |      **404.67 s**     |      **xx.xx s**      |
-|       Float16        |     **xx.xx**     |    **xx.xx**    |      **xx.xx**      |
-|         Int8         |     **xx.xx**     |    **xx.xx**    |      **xx.xx**      |
-|     Dynamic Range    |     **xx.xx**     |    **xx.xx**    |      **xx.xx**      |
+|       Float16        |     **xx.xx**     |    **Not Supported**    |      **xx.xx**      |
+|         Int8         |     **xx.xx**     |    **272.04 s**    |      **xx.xx**      |
+|     Dynamic Range    |     **xx.xx**     |    **754.32 s**    |      **xx.xx**      |
 
 ### GPU
 |   **Quantization**   |     **Pytorch**    |     **ONNX**     |   **Tensorflow**  |
 |    :-------------:   |  :--------------:  | :--------------: | :---------------: |
 |  Original (Float32)  |      **55.13 s**    |      **37.05 s**     |      **xx.xx s**      |
-|       Float16        |     **xx.xx**     |    **xx.xx**    |      **xx.xx**      |
-|         Int8         |     **xx.xx**     |    **xx.xx**    |      **xx.xx**      |
-|     Dynamic Range    |     **xx.xx**     |    **xx.xx**    |      **xx.xx**      |
+|       Float16        |     **xx.xx**     |    **Not Supported**    |      **xx.xx**      |
+|         Int8         |     **xx.xx**     |    **63.02 s**    |      **xx.xx**      |
+|     Dynamic Range    |     **xx.xx**     |    **644.98 s**    |      **xx.xx**      |

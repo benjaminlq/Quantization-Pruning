@@ -29,7 +29,7 @@ def pytorch_to_onnx(
     output_names: List = ["outputs"],
     constant_folding: bool = True,
     dynamic_batch: bool = True,
-    op_version: int = 12,
+    op_version: int = 16,
 ):
     
     if torch_ckpt:
@@ -64,7 +64,7 @@ def pytorch_to_onnx(
     if ort.get_device() == "GPU":
         print(f"Test model in {ort.get_device()}")
         ort_session = ort.InferenceSession(onnx_ckpt,
-                                           providers=['CUDAExecutionProvider'])
+                                           providers=['TensorrtExecutionProvider','CUDAExecutionProvider'])
     else:
         print(f"Test model in {ort.get_device()}")
         ort_session = ort.InferenceSession(onnx_ckpt)

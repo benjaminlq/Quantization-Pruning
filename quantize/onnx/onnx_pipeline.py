@@ -1,3 +1,5 @@
+import torch
+
 from onnxruntime.quantization.shape_inference import quant_pre_process
 from onnxruntime.quantization.quantize import quantize_static, quantize_dynamic, quantize
 from onnxruntime.quantization import QuantFormat, QuantType, quantize_static, quantize_dynamic, CalibrationMethod

@@ -6,8 +6,8 @@ class CIFAR10DataReader(CalibrationDataReader):
     def __init__(
         self,
         model_path: str,
-        batch_size: int = 8,
-        batch_no: int = 10,
+        batch_size: int = 32,
+        batch_no: int = 100,
     ):
         self.enum_data = None
         if ort.get_device() == "GPU":

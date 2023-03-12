@@ -7,8 +7,10 @@
 |    :-------------:   |  :--------------:  | :--------------: | :---------------: |
 |  Original (Float32)  |      **96.07 %**    |    **96.07 %**    |      **xx.xx%**      |
 |       Float16        |     **xx.xx%**     |    **Not Supported**    |      **xx.xx%**      |
-|         Int8         |     **xx.xx%**     |    **94.30% / 94.88%**    |      **xx.xx%**      |
-|     Dynamic Range    |     **xx.xx%**     |    **90.75%**    |      **xx.xx%**      |
+|         Int8         |     **xx.xx%**     |    **94.35%***    |      **xx.xx%**      |
+|     Dynamic Range    |     **xx.xx%**     |    **95.56%**    |      **xx.xx%**      |
+
+**\* :** Accuracy of **Static Quantization** may be different for teach quantization run depending on the calibration data sample provided. For small sample, accuracy difference may be up to **2-3%**.
 
 <br> 644.98
 
@@ -40,3 +42,5 @@
 |       Float16        |     **xx.xx**     |    **Not Supported**    |      **xx.xx**      |
 |         Int8         |     **xx.xx**     |    **63.02 s**    |      **xx.xx**      |
 |     Dynamic Range    |     **xx.xx**     |    **644.98 s**    |      **xx.xx**      |
+
+* **ONNX**: Quantization does not improvement performance (Inference Time) as GPU model does not support Tensor Core INT8 computation (T4 or A100). To test preformance benchmark on Tensor Core INT8 supported GPU (Volta-V, Turing-T, Ampere-A, Hopper-H)

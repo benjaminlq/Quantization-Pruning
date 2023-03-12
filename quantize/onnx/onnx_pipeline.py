@@ -52,7 +52,7 @@ def main():
         if (not args.skip_optimization) and args.save_as_external_data:
             LOGGER.error("ORT model optimization does not support external data yet!")
             sys.exit()
-        pre_process_model = osp.splitext(source_model)[0] + ".preproc.onnx"
+        pre_process_model = osp.splitext(source_model)[0] + ".tmppreproc.onnx"
         LOGGER.info("Start Model Preprocessing Stage")
         LOGGER.info(f"Source Model Path: {source_model}")
         LOGGER.info(f"Preprocessed Model Path: {pre_process_model}")
@@ -121,4 +121,5 @@ def main():
 if __name__ == "__main__":
     main()    
 
-# python3 quantize/onnx/onnx_pipeline.py -i models/onnx/ckpt/best_resnet50_cifar10.onnx -o models/onnx/ckpt/best_resnet50_cifar10.staticquant.onnx -t static
+# python3 quantize/onnx/onnx_pipeline.py -i models/onnx/ckpt/best_resnet50_cifar10.onnx -o models/onnx/ckpt/best_resnet50_cifar10.staticquantfullpipe.onnx -t static
+# python3 quantize/onnx/onnx_pipeline.py -i models/onnx/ckpt/best_resnet50_cifar10.onnx -o models/onnx/ckpt/best_resnet50_cifar10.dynamicquantfullpipe.onnx -t dynamic

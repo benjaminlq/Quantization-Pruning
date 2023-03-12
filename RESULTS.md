@@ -43,4 +43,4 @@
 |         Int8         |     **xx.xx**     |    **63.02 s**    |      **xx.xx**      |
 |     Dynamic Range    |     **xx.xx**     |    **644.98 s**    |      **xx.xx**      |
 
-* **ONNX**: Quantization does not improvement performance (Inference Time) as GPU model does not support Tensor Core INT8 computation (T4 or A100). To test preformance benchmark on Tensor Core INT8 supported GPU (Volta-V, Turing-T, Ampere-A, Hopper-H)
+* **ONNX**: Quantization does not improvement performance (Inference Time) as GPU model does not support Tensor Core INT8 computation (T4 or A100). To test preformance benchmark on Tensor Core INT8 supported GPU (Turing-T, Ampere-A, Hopper-H series supported INT8 & INT4 Tensor Core computation)

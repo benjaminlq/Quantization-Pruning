@@ -36,10 +36,13 @@ def main():
     args = get_argument_parser()
     LOGGER.info(f"Test inference on {args.exp_name}")
     LOGGER.info(f"Loading Model from {args.torch_ckpt}")
-    device = torch.device(args.device)
-    LOGGER.info(f"Pytorch inference with {args.device}")
+    if torch.cuda.is_available() and (args.device == "cuda"):
+        device = torch.device("cuda")
+    else:
+        device = torch.device("cpu")
+    LOGGER.info(f"Pytorch inference with {device}")
     torch_model = PretrainedResNet50()
-    load_model(torch_model, args.torch_ckpt, args.device)
+    load_model(torch_model, args.torch_ckpt, device)
     torch_model.to(device)
     LOGGER.info(f"Model checkpoint loaded successfully from {args.torch_ckpt}")
     

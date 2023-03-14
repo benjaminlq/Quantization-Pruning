@@ -119,4 +119,4 @@ if __name__ == "__main__":
         args.external_data_size_threshold,
     )
     
-#
+# python3 quantize/onnx/onnx_preprocess.py --input models/onnx/ckpt/best_resnet50_cifar10.onnx --output models/onnx/ckpt/best_resnet50_cifar10.preproc.onnx

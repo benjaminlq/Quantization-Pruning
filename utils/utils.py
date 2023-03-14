@@ -59,3 +59,9 @@ def benchmark_inference_time(model_path, model: Optional[Callable] = None, frame
             print(f"{end:.2f} ms")
         total_time /= runs
         return f"Avg: {total_time:.2f} ms"
+    
+def generate_aug_model_path(model_path: str) -> str:
+    aug_model_path = (
+        model_path[: -len(".onnx")] if model_path.endswith(".onnx") else model_path
+    )
+    return aug_model_path + ".save_tensors.onnx"

@@ -64,6 +64,7 @@ Signal to quantization noise ratio (SQNR) is a measure of the quality of the qua
 
 **NOTE: A higher SQNR score indicates a lower quantization error.**
 
+
 - General Formula
 $$ SQNR = \frac{Normalized Signal Power}{Normalized Quantization Noise Power} $$
 
